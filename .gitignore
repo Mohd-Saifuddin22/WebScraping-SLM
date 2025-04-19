@@ -1,0 +1,33 @@
+# .gitignore
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+*/venv/
+.venv/
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Cache directories (e.g., from models)
+.cache/
+*/.cache/
+huggingface/
+
+# Sensitive information (if any)
+*.env
+*.private
+
+# Large data files (if not using Git LFS and generated locally)
+# data/faiss_index.idx
+# data/scheme_chunks.json
+# data/myscheme_100_schemes_generic.json # Keep this one *unless* it's huge
+
+# OS generated files
+.DS_Store
+Thumbs.db
