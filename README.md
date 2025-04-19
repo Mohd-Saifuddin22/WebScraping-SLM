@@ -1,17 +1,5 @@
 Note: Recommend listing faiss-cpu here as it's easier for average users to install across platforms. Users with GPUs can manually install faiss-gpu if they prefer.
 
-WebScraping-SLM/
-├── data/
-│   ├── myscheme_100_schemes_generic.json
-│   ├── faiss_index.idx
-│   └── scheme_chunks.json
-├── .gitignore
-├── README.md
-├── requirements.txt
-├── scrape_schemes.py                    # Optional: Script to re-scrape data
-├── build_index.py                       # Optional: Script to re-build FAISS index
-└── qa_interactive.py                    # Main script to run the Q&A Bot
-
 # MyScheme QA - RAG Demo
 
 This project demonstrates a Retrieval-Augmented Generation (RAG) based Question Answering system built using data scraped from the Indian government's MyScheme portal (`myscheme.gov.in`).
