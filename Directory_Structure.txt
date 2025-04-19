@@ -1,0 +1,11 @@
+WebScraping-SLM/
+├── data/
+│   ├── myscheme_100_schemes_generic.json
+│   ├── faiss_index.idx
+│   └── scheme_chunks.json
+├── .gitignore
+├── README.md
+├── requirements.txt
+├── scrape_schemes.py                    # Optional: Script to re-scrape data
+├── build_index.py                       # Optional: Script to re-build FAISS index
+└── qa_interactive.py                    # Main script to run the Q&A Bot
