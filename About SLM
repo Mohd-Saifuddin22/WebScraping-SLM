@@ -1,0 +1,30 @@
+This phase uses the scraped data to build a system that can answer user questions about the schemes. The Retrieval-Augmented Generation (RAG) approach was chosen to ensure answers are grounded in the actual scheme details, minimizing hallucination.
+
+Pipeline:
+Load Data: The scraped myscheme_100_schemes_generic.json is loaded.
+Preprocessing & Chunking (build_index.py):
+The data is processed section by section.
+Each meaningful section (heading + content) from the scraped data is formatted into a text "chunk".
+Crucially, context like the Scheme Name and Section Heading is prepended to the section's content within each chunk (e.g., "Scheme Name: [Name]\nSection: [Heading]\n\n[Content]"). This helps the retrieval model understand the source of the information.
+This process resulted in 828 distinct text chunks from the 100 schemes.
+Metadata (scheme URL, name, section heading) is stored alongside the chunks.
+The processed chunks and metadata are saved to data/scheme_chunks.json.
+Embedding (build_index.py):
+An efficient sentence transformer model (sentence-transformers/all-MiniLM-L6-v2) is loaded using the sentence-transformers library.
+This model converts each text chunk into a 384-dimensional dense vector embedding, capturing its semantic meaning.
+Indexing (build_index.py):
+The generated vector embeddings are stored in a FAISS (IndexFlatL2) index. FAISS allows for very fast similarity searches. IndexFlatL2 performs an exact search, suitable for this number of vectors.
+The built index is saved to data/faiss_index.idx.
+Retrieval (qa_interactive.py):
+When a user asks a question, it's first converted into a vector embedding using the same all-MiniLM-L6-v2 model.
+The FAISS index is searched to find the embeddings (and thus, the original text chunks) most similar to the question embedding (top_k=3 chunks are retrieved by default).
+Prompting (qa_interactive.py):
+A carefully crafted prompt is constructed for the generator LLM.
+It includes clear instructions to answer only based on the provided context and what to do if the answer isn't present.
+The retrieved context chunks are inserted into the prompt, followed by the user's original question.
+Generation (qa_interactive.py):
+The complete prompt is fed to a sequence-to-sequence Large Language Model (google/flan-t5-large recommended for best results) loaded via the transformers library.
+The model generates an answer based on the instructions and the provided context chunks, using greedy decoding for factual consistency.
+
+Outcome:
+The qa_interactive.py script loads the pre-built index, chunks, and models, providing an interactive command-line interface where users can ask questions and receive answers synthesized by the LLM directly from the relevant sections of the scraped scheme data.
