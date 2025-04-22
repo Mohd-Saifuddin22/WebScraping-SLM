@@ -34,13 +34,13 @@ This allows you to run the Q&A system directly without needing to scrape or buil
     ```
 
 3.  **Install Dependencies:**
-    * First, install PyTorch matching your system (CPU or specific CUDA version). See instructions at [pytorch.org](https://pytorch.org/). Example (CPU): `pip install torch torchvision torchaudio`
+    * First, install PyTorch matching your system (CPU or specific CUDA version).
     * Then, install other requirements:
         ```bash
         pip install -r requirements.txt
         ```
 
-## Running the QA Bot (Easy Way)
+## Running the QA Bot
 
 This uses the pre-built index and data included in the repository.
 
