@@ -20,7 +20,7 @@ This allows you to run the Q&A system directly without needing to scrape or buil
 
 1.  **Clone the Repository:**
     ```bash
-    git clone <your-repo-url>
+    git clone <https://github.com/Mohd-Saifuddin22/WebScraping-SLM.git>
     cd myscheme-qa
     ```
 
